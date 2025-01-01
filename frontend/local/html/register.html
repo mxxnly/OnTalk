@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'css/auth.css' %}" rel="stylesheet" />
+    <title>Register</title>
+</head>
+<body>
+
+    <div class="wrapper">
+        <div class="form signup">
+            <header>REGISTER</header>
+            <form method="POST" action="{% url 'register' %}">
+                {% csrf_token %}
+                {{ form.as_p }}
+
+                <button type="submit">Register</button>
+
+                <p class="acc-link">
+                    Have an account? 
+                    <a href="{% url 'login' %}">Login</a>
+                </p>
+            </form>
+            {% if form.errors %}
+                <div class="error-message">
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+</body>
+</html>
