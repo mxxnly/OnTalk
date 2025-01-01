@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'css/forum.css' %}" rel="stylesheet" />
+    <title>Forum Home</title>
+</head>
+<body>
+
+    <header>
+        <div class="nav-wrapper">
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about">About</a></li>
+                    {% if user.is_authenticated %}
+                        <li><a href="{% url 'logout' %}">Logout</a></li>
+                    {% else %}
+                        <li><a href="{% url 'login' %}">Login</a></li>
+                        <li><a href="{% url 'register' %}">Register</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="wrapper">
+        <div class="forum-container">
+            <h1>Welcome to the OnTalk</h1>
+
+            {% if user.is_authenticated %}
+                <a href="" class="create-topic-btn">Create New Post</a>
+            {% endif %}
+
+            <div class="posts-list">
+                {% for post in posts %}
+                    <div class="post">
+                        <h2><a href="{% url 'post_detail' post.id %}">{{ post.title }}</a></h2>
+                        <p>By {{ post.author.username }} | {{ post.created_at|date:"F j, Y" }}</p>
+                        <p>{{ post.content|slice:":200" }}...</p>
+                    </div>
+                {% empty %}
+                    <p>No posts available. Be the first to create one!</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
