@@ -4,42 +4,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="{% static 'css/forum.css' %}" rel="stylesheet" />
     <title>Forum Home</title>
 </head>
 <body>
 
-    <header>
-        <div class="nav-wrapper">
-            <nav>
-                <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/about">About</a></li>
-                    {% if user.is_authenticated %}
-                        <li><a href="{% url 'logout' %}">Logout</a></li>
-                    {% else %}
-                        <li><a href="{% url 'login' %}">Login</a></li>
-                        <li><a href="{% url 'register' %}">Register</a></li>
-                    {% endif %}
-                </ul>
-            </nav>
+    <!-- Navbar at the top -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">OnTalk</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/about">About</a>
+                </li>
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'register' %}">Register</a>
+                    </li>
+                {% endif %}
+            </ul>
         </div>
-    </header>
+    </nav>
 
     <div class="wrapper">
-        <div class="forum-container">
-            <h1>Welcome to the OnTalk</h1>
+        <div class="forum-container container mt-5">
+            <h1>Welcome to OnTalk</h1>
 
             {% if user.is_authenticated %}
-                <a href="" class="create-topic-btn">Create New Post</a>
+                <a href="{% url 'create_post' %}" class="create-topic-btn btn btn-primary">Create New Post</a>
             {% endif %}
 
-            <div class="posts-list">
+            <div class="posts-list mt-4">
                 {% for post in posts %}
-                    <div class="post">
-                        <h2><a href="{% url 'post_detail' post.id %}">{{ post.title }}</a></h2>
+                    <div class="post mb-4">
+                        <h2><a href="">{{ post.title }}</a></h2>
                         <p>By {{ post.author.username }} | {{ post.created_at|date:"F j, Y" }}</p>
-                        <p>{{ post.content|slice:":200" }}...</p>
+                        <p>{{ post.text|slice:":200" }}...</p>
                     </div>
                 {% empty %}
                     <p>No posts available. Be the first to create one!</p>
@@ -48,5 +62,15 @@
         </div>
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.navbar-toggler').click(function() {
+                $('.navbar-nav').toggleClass('show');
+            });
+        });
+    </script>
 </body>
 </html>

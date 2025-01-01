@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'auth_user',
     'pages',
+    'posts_system',
 ]
 
 MIDDLEWARE = [

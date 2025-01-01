@@ -1,0 +1,141 @@
+body {
+    background-color: #121212;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbar {
+    background: linear-gradient(90deg, rgba(0,0,0,0.7), rgba(0,0,0,0.3));
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+.navbar-brand, .nav-link {
+    color: #fff !important;
+    transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-item:hover .nav-link {
+    color: #FFD700 !important;
+}
+
+.wrapper {
+    padding: 20px;
+}
+
+.create-post-container {
+    background: rgba(18, 18, 18, 0.85);
+    border-radius: 8px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    padding: 30px;
+    margin-top: 50px;
+    backdrop-filter: blur(10px);
+}
+
+.create-post-container h1 {
+    font-size: 28px;
+    color: #FFD700;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+button[type="submit"] {
+    background: linear-gradient(45deg, #ff007f, #ff7f00);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 16px;
+    transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    transform: scale(1.05);
+    background: linear-gradient(45deg, #ff7f00, #ff007f);
+}
+
+input[type="text"], input[type="password"], input[type="email"], textarea {
+    background: rgba(36, 36, 36, 0.9);
+    border: 1px solid #444;
+    color: #fff;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 6px;
+    width: 100%;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus, textarea:focus {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #FFD700;
+    outline: none;
+    box-shadow: 0 0 5px rgba(255, 215, 0, 0.7);
+}
+
+input[type="text"].is-invalid, input[type="password"].is-invalid, input[type="email"].is-invalid, textarea.is-invalid {
+    background: rgba(255, 0, 0, 0.2);
+    border-color: #ff4d4d;
+}
+
+.invalid-feedback {
+    color: #ff4d4d;
+    font-size: 12px;
+}
+
+.invalid-feedback p {
+    margin: 0;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .navbar-nav {
+        text-align: center;
+    }
+
+    .create-post-container {
+        padding: 20px;
+    }
+
+    .post h2 {
+        font-size: 20px;
+    }
+
+    .create-topic-btn {
+        width: 100%;
+    }
+
+    .create-post-container h1 {
+        font-size: 24px;
+    }
+
+    button[type="submit"] {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar-brand {
+        font-size: 1.1rem;
+    }
+
+    .create-post-container {
+        padding: 15px;
+        margin-top: 60px;
+    }
+
+    button[type="submit"] {
+        padding: 14px;
+    }
+}
